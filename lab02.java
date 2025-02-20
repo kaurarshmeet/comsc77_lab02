@@ -10,6 +10,8 @@ import java.util.Scanner;
  * 
  */
 
+import java.util.Scanner;
+
 public class lab02 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -41,7 +43,7 @@ public class lab02 {
         int exponent = 0;
         float significand = num;
         
-        // Normalize the significand
+        // Normalize the significand to the form 0.1xxxxxxxx
         while (significand >= 2.0) {
             significand /= 2.0;
             exponent++;
@@ -54,10 +56,7 @@ public class lab02 {
         // Adjust exponent with excess-15 bias
         int biasedExponent = exponent + 15;
         
-        // Remove the leading 1 in the significand (implicit in floating point representation)
-        significand -= 1.0;
-        
-        // Convert significand to an 8-bit binary representation
+        // Extract the 8 bits after the leading 1 in the significand
         int significandBits = 0;
         for (int i = 0; i < 8; i++) {
             significand *= 2;
